@@ -17,7 +17,7 @@ For the Databricks part you need to have [Unity Catalog enabled](https://learn.m
 You should create your catalog with an external location pointing to a location in an Azure Data Lake Storage Gen2. 
 ![createunitycatalog.png](media/createunitycatalog.png)
 Let´s assume i have a catalog called "healthcare" with a schema called "clinicaltrialssilver" and some tables in it called "subject", "adverse_events", "measurements".
-[!viewunityschema.png](media/viewunityschema.png)
+![viewunityschema.png](media/viewunityschema.png)
  
 ## Create a shortcut to a Databricks Unity Catalog table
 
@@ -27,15 +27,15 @@ To do so go to your Fabric Lakehouse and create a table shortcut.
 
 Choose ADLS Gen2 and build a connection. The only missing piece is to know the path where the Unity Catalog table´s delta files are actually stored. 
 To do so either use the API, CLI or SDK of Databricks or navigate to the Data section within your Databricks and check the details section of the corresponding table.
-[!tabledetailsunity.png](media/tabledetailsunity.png)
-[!apicalls.png](media/apicalls.png)
+![tabledetailsunity.png](media/tabledetailsunity.png)
+![apicalls.png](media/apicalls.png)
 
 Adjust the abfss-path to the corresponding https-path and you can complete the shortcut-setup.
-[!shortcutcreation1.png](media/shortcutcreation1.png)
-[!shortcutcreation2.png](media/shortcutcreation1.png)
+![shortcutcreation1.png](media/shortcutcreation1.png)
+![shortcutcreation2.png](media/shortcutcreation1.png)
 
 You can now see the table in your Fabric Lakehouse.
-[!tableinlakehouse.png](media/tableinlakehouse.png)
+![tableinlakehouse.png](media/tableinlakehouse.png)
 
 As both the table definition in the Fabric Lakehouse as well as the Unity Catalog table are actually pointing to the same delta table in the ADLS they are exactly the same. They even share their delta-specific features like enabled change feed etc.
 
