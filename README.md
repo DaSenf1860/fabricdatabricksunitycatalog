@@ -10,7 +10,7 @@ With the ability of using [OneLake-Shortcuts](https://learn.microsoft.com/en-us/
 
 ## Setup
 
-To follow along you need to have a [Microsoft Fabric Lakehouse](https://learn.microsoft.com/en-us/fabric/onelake/create-lakehouse-onelake). You either use an exisiting one or create a new one. I would suggest to have one Lakehouse for each schema in the Unity Catalog.  
+To follow along you need to have a [Microsoft Fabric Lakehouse](https://learn.microsoft.com/en-us/fabric/onelake/create-lakehouse-onelake). You either use an existing  one or create a new one. I would suggest to have one Lakehouse for each schema in the Unity Catalog.  
 
 For the Databricks part you need to have [Unity Catalog enabled](https://learn.microsoft.com/en-gb/azure/databricks/data-governance/unity-catalog/get-started) for your account and a metastore. Then you can create catalogs in this metastore from within your Databricks workspace as well as schemas in those catalogs and tables in those schemas.  
 
@@ -24,18 +24,19 @@ Let´s assume i have a catalog called "healthcare" with a schema called "clinica
 To work with those tables from Fabric you can easily create shortcuts. This way you can work with the data as if it was stored in the Fabric OneLake but it´s actually only a reference and no data is moved.  
 
 To do so go to your Fabric Lakehouse and create a table shortcut.  
+![createshortcut.png](media/createshortcut.png)
 
 Choose ADLS Gen2 and build a connection. The only missing piece is to know the path where the Unity Catalog table´s delta files are actually stored. 
 To do so either use the API, CLI or SDK of Databricks or navigate to the Catalog/Data section within your Databricks workspace and check the details section of the corresponding table.
 ![tabledetailsunity.png](media/tabledetailsunity.png)
 ![apicalls.png](media/apicalls.png)
-(The code can be found for the apicalls is also in this repo)
+(The code for the API-calls can also be found in this repo)
 
-Adjust the abfss-path to the corresponding https-path and you can complete the shortcut-setup.
+Adjust the abfss-path to the corresponding https-path and you can complete the shortcut-setup. (I´ve done the path-conversion programmatically in my code.)
 ![shortcutcreation1.png](media/shortcutcreation1.png)
 ![shortcutcreation2.png](media/shortcutcreation1.png)
 
-You can now see the table in your Fabric Lakehouse.
+Now you can see the table in your Fabric Lakehouse.
 ![tableinlakehouse.png](media/tableinlakehouse.png)
 
 As both the table definition in the Fabric Lakehouse as well as the Unity Catalog table are actually pointing to the same delta table in the ADLS they are exactly the same. They even share their delta-specific features like enabled change feed etc.
@@ -51,7 +52,7 @@ Considering the big benefits of harmonizing both experiences hopefully we will s
 
 ## Reap the benefits
 
-Integrating both experiences we get the best out of the two. We can have all the state-of-the-art data engineering capabilites from Databricks like Delta Live Tables, Auto Loader, Photon Engine, Liquid Clustering etc. paired with the full power of Fabric like the wide range of data integration scenarios, a Data Warehouse experience, real-time analytics, Power BI direct lake mode, Data Activator etc. 
+Integrating both experiences we get the best out of the two. We can have all the state-of-the-art data engineering capabilities from Databricks like Delta Live Tables, Auto Loader, Photon Engine, Liquid Clustering etc. paired with the full power of Fabric like the wide range of data integration scenarios, a Data Warehouse experience, real-time analytics, Power BI direct lake mode, Data Activator etc. 
 Being able to use the Unity Catalog tables seamlessly from Fabric and the other way around gives you the full flexibility to choose the best tool for each task and still have a unified experience. 
 Potentially we could see architectures like the following with close to zero integration effort.
 
