@@ -26,9 +26,10 @@ To work with those tables from Fabric you can easily create shortcuts. This way 
 To do so go to your Fabric Lakehouse and create a table shortcut.  
 
 Choose ADLS Gen2 and build a connection. The only missing piece is to know the path where the Unity Catalog table´s delta files are actually stored. 
-To do so either use the API, CLI or SDK of Databricks or navigate to the Data section within your Databricks and check the details section of the corresponding table.
+To do so either use the API, CLI or SDK of Databricks or navigate to the Catalog/Data section within your Databricks workspace and check the details section of the corresponding table.
 ![tabledetailsunity.png](media/tabledetailsunity.png)
 ![apicalls.png](media/apicalls.png)
+(The code can be found for the apicalls is also in this repo)
 
 Adjust the abfss-path to the corresponding https-path and you can complete the shortcut-setup.
 ![shortcutcreation1.png](media/shortcutcreation1.png)
@@ -54,4 +55,4 @@ Integrating both experiences we get the best out of the two. We can have all the
 Being able to use the Unity Catalog tables seamlessly from Fabric and the other way around gives you the full flexibility to choose the best tool for each task and still have a unified experience. 
 Potentially we could see architectures like the following with close to zero integration effort.
 
-[!medaillonarchitecture.png](media/medaillonarchitecture.png)
+![medaillonarchitecture.png](media/medaillonarchitecture.png)
